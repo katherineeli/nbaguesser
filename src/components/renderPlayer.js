@@ -46,8 +46,10 @@ export default class renderPlayer extends Component {
       form_value: e.target.value
     })
       if (e.target.value.toLowerCase() === (this.state.player_info.first_name + " " + this.state.player_info.last_name).toLowerCase()) {
+        let addScore = this.state.score + 1
         this.setState({
-          form_value: ""
+          form_value: "", 
+          score: addScore
         })
         this.componentDidMount()
       }
@@ -62,6 +64,7 @@ export default class renderPlayer extends Component {
                  
         </form>
         <button onClick = {this.componentDidMount.bind(this)}>Skip</button>
+    <p>{this.state.score}</p>
         <div>
           {this.state.loading || !this.state.player_info ? (
             <p>Loading...</p>
