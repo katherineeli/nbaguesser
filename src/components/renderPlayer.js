@@ -110,8 +110,11 @@ export default class renderPlayer extends Component {
                 <div className="column is-half">
                   <div className="h3 inline">WEIGHT (lbs)</div><div className="stat inline">{this.state.player_info.weight_pounds}</div>
                 </div>
-                <div className="column">
+                <div className="column is-half">
                   <div className="h3 inline">POSITION</div><div className="stat inline">{this.state.player_info.position}</div>
+                </div>
+                <div className="column is-half">
+                  <div className="h3 inline">CURRENT TEAM</div><div className="stat inline">{this.state.player_info.team.name}</div>
                 </div>
               </div>
             )}
