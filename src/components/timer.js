@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 
 export default class Timer extends Component {
     state = {
-        minutes: 3,
-        seconds: 0,
+        minutes: 0,
+        seconds: 5,
+        timedOut: false
     }
 
     componentDidMount() {
@@ -30,6 +31,15 @@ export default class Timer extends Component {
 
     componentWillUnmount() {
         clearInterval(this.myInterval)
+    }
+
+    componentDidUpdate(){
+        if(this.state.timedOut == false && this.state.minutes === 0 && this.state.seconds === 0){
+            this.setState({
+                timedOut: true
+            })
+            this.props.timeoutCallback()
+        }
     }
 
     render() {

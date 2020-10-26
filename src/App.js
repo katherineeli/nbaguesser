@@ -6,12 +6,22 @@ import Timer from "./components/timer.js";
 
 
 class App extends Component {
+  state = {
+    timeout: false
+  }
+
+  setTimeout(){
+    this.setState({
+      timeout: true
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <NavBar/>       
-        <Timer />
-        <RenderPlayer />
+        <Timer timeoutCallback = {this.setTimeout.bind(this)}/>
+        <RenderPlayer timeout = {this.state.timeout}/>
               
       </div>
     );
