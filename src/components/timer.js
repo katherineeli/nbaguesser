@@ -50,6 +50,15 @@ export default class Timer extends Component {
         clearInterval(this.myInterval)
     }
 
+    componentDidUpdate(){
+        if(this.state.timedOut == false && this.state.minutes === 0 && this.state.seconds === 0){
+            this.setState({
+                timedOut: true
+            })
+            this.props.timeoutCallback()
+        }
+    }
+
     render() {
         const { minutes, seconds } = this.state
         return (
