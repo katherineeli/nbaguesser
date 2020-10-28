@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import "./App.css";
 import RenderPlayer from "./components/renderPlayer.js";
 import NavBar from "./components/NavBar.js";
-import Timer from "./components/timer.js";
+// import Timer from "./components/timer.js";
 
 
 class App extends Component {
@@ -10,8 +9,8 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar/>       
-        <Timer />
-        <RenderPlayer />
+        {/* <Timer/> */}
+        <RenderPlayer/>
               
       </div>
     );

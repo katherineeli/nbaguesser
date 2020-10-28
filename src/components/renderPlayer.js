@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import '../../node_modules/bulma';
+import '../styles/styles.css'
+import Timer from "./timer";
+
 
 export default class renderPlayer extends Component {
   state = {
@@ -63,7 +66,8 @@ export default class renderPlayer extends Component {
         <form id="guess-player">
           <input id="player-input" type="text" onChange = {this.checkInput} value={this.state.form_value}/> 
         </form>
-        <button className= "button is-light" onClick = {this.componentDidMount.bind(this)}>Skip</button>
+        <button id="skip" className= "button is-light" onClick = {this.componentDidMount.bind(this)}>Skip</button>
+        <button id="newGame" className= "button is-primary">New Game</button>
         <div className="tile is-ancestor">
           <div className="tile is-parent">
             <div className="tile is-child box is-4" id="stats">
@@ -110,10 +114,10 @@ export default class renderPlayer extends Component {
                 <div className="column is-half">
                   <div className="h3 inline">WEIGHT (lbs)</div><div className="stat inline">{this.state.player_info.weight_pounds}</div>
                 </div>
-                <div className="column is-half">
+                <div className="column is-one-third">
                   <div className="h3 inline">POSITION</div><div className="stat inline">{this.state.player_info.position}</div>
                 </div>
-                <div className="column is-half">
+                <div className="column">
                   <div className="h3 inline">CURRENT TEAM</div><div className="stat inline">{this.state.player_info.team.name}</div>
                 </div>
               </div>
@@ -121,9 +125,15 @@ export default class renderPlayer extends Component {
             </div>
           </div>
           <div className="tile is-parent">
-            <div className="tile is-child box">
-              <div className="h4">Score:</div>
+            <div className="tile is-child box" id="score">
+              <div className="h4">SCORE</div>
               <div className="num"> {this.state.score} </div>
+            </div>
+          </div>
+          <div className="tile is-parent">
+            <div className="tile is-child box" id="timer">
+            <div className="h4">TIMER</div>
+              <Timer/>
             </div>
           </div>
         </div>
