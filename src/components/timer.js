@@ -8,8 +8,8 @@ export default class Timer extends Component {
     constructor () {
         super();
         this.state = {
-            minutes: 3,
-            seconds: 0,
+            minutes: 0,
+            seconds: 5,
             showModal: false,
         }
 

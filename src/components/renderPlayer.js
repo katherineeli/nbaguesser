@@ -89,12 +89,8 @@ export default class renderPlayer extends Component {
               />
                
             </form>
-            <button
-              className="button is-light"
-              onClick={this.componentDidMount.bind(this)}
-            >
-              Skip
-            </button>
+            <button id="skip" className= "button is-light" onClick = {this.componentDidMount.bind(this)}>Skip</button>
+            <button id="newGame" className= "button is-primary">New Game</button>
             <div className="tile is-ancestor">
               <div className="tile is-parent">
                 <div className="tile is-child box is-4" id="stats">
