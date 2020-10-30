@@ -3,7 +3,6 @@ import '../../node_modules/bulma';
 import '../styles/styles.css'
 import Timer from "./timer";
 
-
 export default class renderPlayer extends Component {
   state = {
     loading: true,
@@ -11,7 +10,7 @@ export default class renderPlayer extends Component {
     player_info: null,
     form_value: "",
     score: 0,
-    timeout: false
+    timeout: false,
   };
 
   setTimeout(){
@@ -76,7 +75,7 @@ export default class renderPlayer extends Component {
   };
 
   render() {
-    if (!this.props.timeout) {
+    if (!this.state.timeout) {
       return (
         <div className="content">
           <div id="show-info">
@@ -87,10 +86,9 @@ export default class renderPlayer extends Component {
                 onChange={this.checkInput}
                 value={this.state.form_value}
               />
-               
             </form>
             <button id="skip" className= "button is-light" onClick = {this.componentDidMount.bind(this)}>Skip</button>
-            <button id="newGame" className= "button is-primary">New Game</button>
+            <button className= "button is-primary newGame" style={{width: 125, height: 44, left: 1112, top: 0}}>New Game</button>
             <div className="tile is-ancestor">
               <div className="tile is-parent">
                 <div className="tile is-child box is-4" id="stats">
@@ -189,26 +187,33 @@ export default class renderPlayer extends Component {
               </div>
               <div className="tile is-parent">
                 <div className="tile is-child box" id="score">
-                  <div className="h4">Score:</div>
+                  <div className="h4">SCORE</div>
                   <div className="num"> {this.state.score} </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div className="tile is-parent">
-            <div className="tile is-child box" id="timer">
-            <div className="h4">TIMER</div>
-              <Timer timeoutCallback = {this.setTimeout.bind(this)}/>
+              <div className="tile is-parent">
+                <div className="tile is-child box" id="timer">
+                  <div className="h4">TIMER</div>
+                  <Timer timeoutCallback = {this.setTimeout.bind(this)}/>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       );
     }
 
-    else{
-      return(
-        <h1>Hello!</h1>
+    else {
+      console.log('timed out')
+      return( 
+        <div className="content">
+          <div className="h4" style={{color:"#17408B"}}>Busted!</div>
+          <div className= "h4">YOUR FINAL SCORE IS:</div>
+          <div className="num"> {this.state.score} </div>
+          <div id="centerButton"> <button className="button is-primary newGame">Play Again</button> </div>
+        </div> 
       )
     }
   }
 }
+
