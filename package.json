@@ -3,14 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@progress/kendo-licensing": "^1.0.2",
+    "@progress/kendo-react-data-tools": "^4.0.0",
+    "@progress/kendo-react-dropdowns": "^4.0.0",
+    "@progress/kendo-react-intl": "^4.0.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "bulma": "^0.9.1",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
+    "react-autocomplete-hint": "^1.2.0",
+    "react-autosuggest": "^10.0.3",
+    "react-autosuggest-dropdown-menu": "^2.0.1",
+    "react-bootstrap-autosuggest": "^0.5.0",
     "react-dom": "^16.13.1",
     "react-modal": "^3.11.2",
+    "react-router": "^5.2.0",
     "react-scripts": "3.4.3"
   },
   "scripts": {
