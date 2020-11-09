@@ -5,7 +5,7 @@ import Timer from "./timer";
 import Autocomplete from "./autocomplete.js";
 import ReactAutoSuggestDropdown from "react-autosuggest-dropdown-menu";
 import players from "./players.js";
-
+ 
 export default class renderPlayer extends Component {
   constructor() {
     super();
