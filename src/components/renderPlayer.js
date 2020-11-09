@@ -1,25 +1,64 @@
 import React, { Component } from "react";
-import '../../node_modules/bulma';
-import '../styles/styles.css'
+import "../../node_modules/bulma";
+import "../styles/styles.css";
 import Timer from "./timer";
+import Autocomplete from "./autocomplete.js";
+import ReactAutoSuggestDropdown from "react-autosuggest-dropdown-menu";
+import players from "./players.js";
 
 export default class renderPlayer extends Component {
-  state = {
-    loading: true,
-    player_stats: null,
-    player_info: null,
-    form_value: "",
-    score: 0,
-    timeout: false,
-  };
+  constructor() {
+    super();
+    this.chooseDropdownItem = this.chooseDropdownItem.bind(this);
+    this.updateSearchValue = this.updateSearchValue.bind(this);
+    this.showDropdown = this.showDropdown.bind(this);
+    this.state = {
+      loading: true,
+      player_stats: null,
+      player_info: null,
+      form_value: "",
+      score: 0,
+      timeout: false,
+      minutes: 3,
+      seconds: 3,
+      chosenValue: "",
+      searchValue: "",
+      showDropdown: false,
+      list: players,
+    };
+  }
 
-  setTimeout(){
+  setTimeout() {
     this.setState({
-      timeout: true
-    })
+      timeout: true,
+    });
   }
 
   async componentDidMount() {
+    this.newPlayer();
+
+    this.myInterval = setInterval(() => {
+      const { seconds, minutes } = this.state;
+
+      if (seconds > 0) {
+        this.setState(({ seconds }) => ({
+          seconds: seconds - 1,
+        }));
+      }
+      if (seconds === 0) {
+        if (minutes === 0) {
+          clearInterval(this.myInterval);
+        } else {
+          this.setState(({ minutes }) => ({
+            minutes: minutes - 1,
+            seconds: 59,
+          }));
+        }
+      }
+    }, 1000);
+  }
+
+  async newPlayer() {
     const stats_url =
       "https://www.balldontlie.io/api/v1/season_averages?season=2018";
     const info_url = "https://www.balldontlie.io/api/v1/players";
@@ -52,47 +91,134 @@ export default class renderPlayer extends Component {
     console.log(this.state);
   }
 
-  checkInput = (e) => {
-    console.log(this.state.player_info);
+  componentWillUnmount() {
+    clearInterval(this.myInterval);
+  }
+
+  componentDidUpdate() {
+    if (
+      !this.state.timedOut &&
+      this.state.minutes === 0 &&
+      this.state.seconds === 0
+    ) {
+      this.setState({
+        timedOut: true,
+      });
+      this.setState({
+        timeout: true,
+      });
+    }
+  }
+
+  chooseDropdownItem(e, valueSelected, valueObject) {
+    e.preventDefault();
+    this.setState({ showDropdown: false, searchValue: valueSelected });
+    this.checkInput(valueObject);
+  }
+
+  updateSearchValue(e) {
+    e.preventDefault();
+    this.setState({ searchValue: e.target.value });
+    this.checkInput(e.target.value);
+  }
+
+  showDropdown() {
+    this.setState({ showDropdown: true });
+  }
+
+  clearSearchValue() {
     this.setState({
-      form_value: e.target.value,
+      searchValue: "",
+    });
+  }
+
+  checkInput = (value) => {
+    if (value.valueToSearch) {
+      value = value.valueToSearch;
+    }
+
+    this.setState({
+      form_value: value,
     });
     if (
-      e.target.value.toLowerCase() ===
+      value.toLowerCase().split(".").join("") ===
       (
         this.state.player_info.first_name +
         " " +
         this.state.player_info.last_name
-      ).toLowerCase()
+      )
+        .toLowerCase()
+        .split(".")
+        .join("")
     ) {
       let addScore = this.state.score + 1;
       this.setState({
         form_value: "",
         score: addScore,
       });
-      this.componentDidMount();
+      this.newPlayer();
+      this.clearSearch();
     }
   };
 
-  refreshPage = ()=>{
+  clearSearch = () => {
+    this.setState({
+      searchValue: "",
+    });
+  };
+
+  skip = () => {
+    this.newPlayer();
+    let newSeconds = this.state.seconds - 5;
+    if (newSeconds < 0) {
+      this.setState(({ minutes, seconds }) => ({
+        minutes: minutes - 1,
+        seconds: 60 + newSeconds,
+      }));
+    } else {
+      this.setState({
+        seconds: newSeconds,
+      });
+    }
+  };
+  refreshPage = () => {
     window.location.reload();
-  }
+  };
 
   render() {
+    const { minutes, seconds } = this.state;
+    const me = this;
     if (!this.state.timeout) {
       return (
         <div className="content">
+          <div className="autocomplete">
+            <ReactAutoSuggestDropdown
+              list={this.state.list}
+              showDropdown={this.showDropdown}
+              displayDropdownMenu={this.state.showDropdown}
+              chosenValue={this.state.chosenValue}
+              chooseDropdownItem={this.chooseDropdownItem}
+              updateSearchValue={this.updateSearchValue}
+              searchValue={this.state.searchValue}
+              highlightColour={"#ff9966"}
+            />
+          </div>
+
           <div id="show-info">
-            <form id="guess-player">
-              <input
-                id="player-input"
-                type="text"
-                onChange={this.checkInput}
-                value={this.state.form_value}
-              />
-            </form>
-            <button id="skip" className= "button is-light" onClick = {this.componentDidMount.bind(this)}>Skip</button>
-            <button className= "button is-primary newGame" onClick = {this.refreshPage} style={{width: 125, height: 44, left: 1112, top: 0}}>New Game</button>
+            <button
+              id="skip"
+              className="button is-light"
+              onClick={this.skip.bind(this)}
+            >
+              Skip
+            </button>
+            <button
+              className="button is-primary newGame"
+              onClick={this.refreshPage}
+              style={{ width: 125, height: 44, left: 1112, top: 0 }}
+            >
+              New Game
+            </button>
             <div className="tile is-ancestor">
               <div className="tile is-parent">
                 <div className="tile is-child box is-4" id="stats">
@@ -198,28 +324,43 @@ export default class renderPlayer extends Component {
               <div className="tile is-parent">
                 <div className="tile is-child box" id="timer">
                   <div className="h4">TIMER</div>
-                  <Timer timeoutCallback = {this.setTimeout.bind(this)}/>
+                  <div>
+                    {minutes === 0 && seconds === 0 ? (
+                      <div className="h4" style={{ color: "#17408B" }}>
+                        Busted!
+                      </div>
+                    ) : (
+                      <div className="num" style={{ color: "#17408B" }}>
+                        {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       );
-    }
-
-    else {
-      console.log('timed out')
-      return( 
+    } else {
+      console.log("timed out");
+      return (
         <div className="content">
-          <div className="h4" style={{color:"#17408B"}}>Busted!</div>
-          <div className= "h4">YOUR FINAL SCORE IS:</div>
+          <div className="h4" style={{ color: "#17408B" }}>
+            Busted!
+          </div>
+          <div className="h4">YOUR FINAL SCORE IS:</div>
           <div className="num"> {this.state.score} </div>
-          <div id="centerButton"> <button className="button is-primary newGame" onClick = {this.refreshPage}>Play Again</button> </div>
-        </div> 
-      )
+          <div id="centerButton">
+            {" "}
+            <button
+              className="button is-primary newGame"
+              onClick={this.refreshPage}
+            >
+              Play Again
+            </button>{" "}
+          </div>
+        </div>
+      );
     }
   }
-
-
 }
-
