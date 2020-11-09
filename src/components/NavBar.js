@@ -42,6 +42,10 @@ class NavBar extends Component {
                         <input className="modInput"></input>
                         <button id="cancel" onClick={this.closeModal} className="button is-light">Cancel</button>
                         <button id="submit" className="button is-primary">Submit</button>
+                        <div id="cont2">
+                            <div className="bigbod" style={{color:"#A7A6A6", textAlign:'center'}}>OR</div>
+                            <a className="h2" style={{color:"black", textAlign:'center'}}>CREATE AN ACCOUNT</a>
+                        </div>
                     </div>
                 </Modal>
             </div>

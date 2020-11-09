@@ -221,7 +221,7 @@ export default class renderPlayer extends Component {
             </button>
             <div className="tile is-ancestor">
               <div className="tile is-parent">
-                <div className="tile is-child box is-4" id="stats">
+                <div className="tile is-child box" id="stats">
                   {this.state.loading || !this.state.player_info ? (
                     <p>Loading...</p>
                   ) : (
