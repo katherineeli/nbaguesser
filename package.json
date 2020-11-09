@@ -1,6 +1,6 @@
 {
   "name": "nbaguesser",
-  "version": "0.1.0",
+  "version": "0.1.0", 
   "private": true,
   "dependencies": {
     "@progress/kendo-licensing": "^1.0.2",
