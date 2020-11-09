@@ -1,189 +1,216 @@
 @import url("https://db.onlinewebfonts.com/c/9920e676c4308b019e7baf8c6b6b9f30?family=Tw+Cen+MT+Condensed");
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 .App {
-    text-align: center;
+  text-align: center;
 }
 
+/* nav */
 .navBar {
-    display: flex;
-    width: 100%;
-    height: 80px;
-    left: 0px;
-    top: 0px;
-    background: white;
+  display: flex;
+  width: 100%;
+  height: 80px;
+  left: 0px;
+  top: 0px;
+  background: white;
 
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .navTitle {
-    display: flex;
-    position: absolute;
-    width: 174px;
-    height: 48px;
-    left: 27px; top: 16px;
-    text-decoration: none;
-    color: black;
-  }
+  display: flex;
+  position: absolute;
+  width: 174px;
+  height: 48px;
+  left: 27px;
+  top: 16px;
+  text-decoration: none;
+  color: black;
+}
 
 .navButton {
-    display: flex;
-    position: absolute;
-    height: 38px;
-    top: 21px;
-    width: fit-content;
-    text-decoration: none;
-    color: black;
-  }
+  display: flex;
+  position: absolute;
+  height: 38px;
+  top: 21px;
+  width: fit-content;
+  text-decoration: none;
+  color: black;
+}
+
+/* content */
 .content {
-    position: absolute;
-    height: 745px;
-    width: 1287px;
-    left: 121px;
-    top: 139px;
-    border-radius: 0px;
-}
-
-.modal {
-    display: inline-block;
-    position: absolute;
-    width: 896px;
-    height: 762px;
-    left: 302px;
-    top: 111px;
-    background-color: #ffff;
-    outline: none;
-}
-
-.overlay {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.5);
-}
-
-.modTitle {
-    position: absolute;
-    width: 116px;
-    height: 68px;
-    left: 139px;
-    top: 179px;
-}
-.modContent {
-    position: absolute;
-    width: 580px;
-    height: 294px;
-    left: 176px;
-    top: 289px;
-}
-
-.modInput {
-    width: 580px;
-    height: 45px;
-    outline-color: #D9D9D9;
+  position: relative;
+  /* height: 95%; */
+  width: 90%;
+  left: 101px;
+  justify-content: center;
+  top: 59px;
+  border-radius: 0px;
 }
 
 #player-input {
-    position: absolute;
-    width: 840px;
-    height: 45px;
-    left: 0px;
-    top: 0px;
-    outline-color: #D9D9D9;
-}
-
-#submit {
-    position: absolute;
-    width: 125px;
-    height: 44px;
-    left: 455px;
-    top: 250px;
-    background-color: #17408B;
-}
-
-#close {
-    position: absolute;
-    width: 125px;
-    height: 44px;
-    left: 550px;
-    top: 653px;
-}
-
-.newGame {
-    position: absolute;
-    background-color: #17408B !important;
-}
-
-#skip {
-    position: absolute;
-    width: 125px;
-    height: 44px;
-    left: 974px;
-    top: 0px;
-}
-
-button {
-    font-family: "Roboto";
-}
-
-#centerButton {
-    display: flex;
-    justify-content: center;
+  position: absolute;
+  width: 840px;
+  height: 45px;
+  left: 0px;
+  top: 0px;
+  outline-color: #d9d9d9;
 }
 
 #stats {
-    position: absolute;
-    top: 60px;
-    width: 840px;
+  position: absolute;
+  top: 60px;
+  width: 68%;
 }
 
 #score {
-    position: absolute;
-    width: 367px;
-    height: 335px;
-    left: 870px;
-    top: 60px
+  position: absolute;
+  width: 28%;
+  height: 335px;
+  left: 920px;
+  top: 60px;
 }
 #timer {
-    position: absolute;
-    width: 367px;
-    height: 335px;
-    left: 870px;
-    top: 410px;
+  position: absolute;
+  width: 28%;
+  height: 335px;
+  left: 920px;
+  top: 405px;
+}
+
+/* modal */
+.modal {
+  display: inline-block;
+  position: absolute;
+  width: 896px;
+  height: 762px;
+  left: 302px;
+  top: 111px;
+  background-color: #ffff;
+  outline: none;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modTitle {
+  position: absolute;
+  width: 116px;
+  height: 68px;
+  left: 121px;
+  top: 133px;
+}
+.modContent {
+  position: absolute;
+  width: 580px;
+  height: 414px;
+  left: 158px;
+  top: 214px;
+}
+
+.modInput {
+  width: 580px;
+  height: 45px;
+  outline-color: #d9d9d9;
+}
+
+#cont2 {
+  display: flex;
+  position: absolute;
+  width: 580px;
+  height: 92px;
+  left: 0px;
+  top: 322px;
+  justify-content: center;
+}
+
+/* buttons */
+.newGame {
+  position: absolute;
+  background-color: #17408b !important;
+}
+
+#skip {
+  position: absolute;
+  width: 125px;
+  height: 44px;
+  left: 974px;
+  top: 0px;
+}
+
+button {
+  font-family: "Roboto";
+}
+
+#submit {
+  position: absolute;
+  width: 125px;
+  height: 44px;
+  left: 455px;
+  top: 250px;
+  background-color: #17408b;
+}
+
+#cancel {
+  position: absolute;
+  width: 125px;
+  height: 44px;
+  left: 303px;
+  top: 250px;
+}
+
+#centerButton {
+  display: flex;
+  justify-content: center;
+}
+
+/* fonts/text style */
+h1,
+.h1 {
+  font-family: "Tw Cen MT Condensed";
+  font-size: 64px;
+}
+h2,
+.h2 {
+  font-family: "Tw Cen MT Condensed";
+  font-size: 36px;
+}
+h3,
+.h3 {
+  font-family: "Tw Cen MT Condensed";
+  font-size: 45px;
+  color: #a7a6a6;
+}
+.h4 {
+  font-family: "Tw Cen MT Condensed";
+  font-size: 72px;
+  font-weight: 400;
+  text-align: center;
+}
+.num {
+  font-family: "Tw Cen MT Condensed";
+  font-size: 144px;
+  text-align: center;
+  color: #c9082a;
+}
+.stat {
+  font-family: "Tw Cen MT Condensed";
+  font-size: 72px;
+  text-align: center;
+}
+.bigbod {
+  font-family: "Roboto";
+  font-size: 24px;
 }
 
 .inline {
-    display: inline-block;
-    vertical-align: middle;
-    padding-left: 15px;
-}
-
-/* fonts */
-h1, .h1 {
-    font-family: "Tw Cen MT Condensed";
-    font-size: 64px;
-}
-h2, .h2 {
-    font-family: "Tw Cen MT Condensed";
-    font-size: 36px;
-}
-h3, .h3 {
-    font-family: "Tw Cen MT Condensed";
-    font-size: 45px;
-    color: #A7A6A6;
-}
-.h4 {
-    font-family: "Tw Cen MT Condensed";
-    font-size: 72px;
-    font-weight: 400;
-    text-align: center;
-}
-.num {
-    font-family: "Tw Cen MT Condensed";
-    font-size: 144px;
-    text-align: center;
-    color: #C9082A;
-}
-.stat {
-    font-family: "Tw Cen MT Condensed";
-    font-size: 72px;
-    text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 15px;
 }
