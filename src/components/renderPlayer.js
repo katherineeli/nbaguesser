@@ -5,7 +5,10 @@ import Timer from "./timer";
 import Autocomplete from "./autocomplete.js";
 import ReactAutoSuggestDropdown from "react-autosuggest-dropdown-menu";
 import players from "./players.js";
- 
+import firebase from './fireBase';
+
+const db = firebase.firestore()
+
 export default class renderPlayer extends Component {
   constructor() {
     super();
@@ -19,7 +22,7 @@ export default class renderPlayer extends Component {
       form_value: "",
       score: 0,
       timeout: false,
-      minutes: 3,
+      minutes: 1,
       seconds: 3,
       chosenValue: "",
       searchValue: "",
@@ -36,7 +39,6 @@ export default class renderPlayer extends Component {
 
   async componentDidMount() {
     this.newPlayer();
-
     this.myInterval = setInterval(() => {
       const { seconds, minutes } = this.state;
 
@@ -97,16 +99,36 @@ export default class renderPlayer extends Component {
 
   componentDidUpdate() {
     if (
-      !this.state.timedOut &&
+      !this.state.timeout &&
       this.state.minutes === 0 &&
       this.state.seconds === 0
     ) {
-      this.setState({
-        timedOut: true,
-      });
+      
       this.setState({
         timeout: true,
       });
+      
+      console.log(firebase.auth().currentUser)
+
+      db.collection("scores").add({
+        email: firebase.auth().currentUser.email,
+        score: this.state.score
+    })
+    .then(function() {
+        console.log("Document successfully written!");
+    })
+    .catch(function(error) {
+        console.error("Error writing document: ", error);
+    });
+
+    db.collection("scores").orderBy("score", "desc").limit(10).get()
+    .then(function(snapshot){
+      snapshot.forEach(function(document){
+        console.log(document.data().email)
+        console.log(document.data().score)
+      })
+    })
+
     }
   }
 

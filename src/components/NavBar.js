@@ -46,6 +46,8 @@ class NavBar extends Component {
                             <div className="bigbod" style={{color:"#A7A6A6", textAlign:'center'}}>OR</div>
                             <a className="h2" style={{color:"black", textAlign:'center'}}>CREATE AN ACCOUNT</a>
                         </div>
+                        <button id="login" className="button is-primary">Submit</button>
+                        
                     </div>
                 </Modal>
             </div>
