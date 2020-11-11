@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "../../node_modules/bulma";
 import "../styles/styles.css";
-import Timer from "./timer";
-import Autocomplete from "./autocomplete.js";
+// import Timer from "./timer";
+// import Autocomplete from "./autocomplete.js";
 import ReactAutoSuggestDropdown from "react-autosuggest-dropdown-menu";
 import players from "./players.js";
 import firebase from './fireBase';
@@ -209,39 +209,48 @@ export default class renderPlayer extends Component {
 
   render() {
     const { minutes, seconds } = this.state;
-    const me = this;
+    // const me = this;
     if (!this.state.timeout) {
       return (
         <div className="content">
-          <div className="autocomplete">
-            <ReactAutoSuggestDropdown
-              list={this.state.list}
-              showDropdown={this.showDropdown}
-              displayDropdownMenu={this.state.showDropdown}
-              chosenValue={this.state.chosenValue}
-              chooseDropdownItem={this.chooseDropdownItem}
-              updateSearchValue={this.updateSearchValue}
-              searchValue={this.state.searchValue}
-              highlightColour={"#ff9966"}
-            />
+          <div className="inputButtons">
+            <div className="autocomplete player-input">
+              <ReactAutoSuggestDropdown
+                list={this.state.list}
+                showDropdown={this.showDropdown}
+                displayDropdownMenu={this.state.showDropdown}
+                chosenValue={this.state.chosenValue}
+                chooseDropdownItem={this.chooseDropdownItem}
+                updateSearchValue={this.updateSearchValue}
+                searchValue={this.state.searchValue}
+                highlightColour={"#ff9966"}
+              />
+            </div>
+            <button className="button is-light" onClick={this.skip.bind(this)}>Skip</button>
+            <button className="button is-primary" onClick={this.refreshPage}>New Game</button>
           </div>
-
           <div id="show-info">
-            <button
-              id="skip"
-              className="button is-light"
-              onClick={this.skip.bind(this)}
-            >
-              Skip
-            </button>
-            <button
-              className="button is-primary newGame"
-              onClick={this.refreshPage}
-              style={{ width: 125, height: 44, left: 1112, top: 0 }}
-            >
-              New Game
-            </button>
             <div className="tile is-ancestor">
+              <div className="tile is-parent is-4 is-vertical">
+                <div className="tile is-child box " id="score">
+                  <div className="h4">SCORE</div>
+                  <div className="num"> {this.state.score} </div>
+                </div>
+                <div className="tile is-child box" id="timer">
+                  <div className="h4">TIMER</div>
+                  <div>
+                    {minutes === 0 && seconds === 0 ? (
+                      <div className="h4" style={{ color: "#17408B" }}>
+                        Busted!
+                      </div>
+                    ) : (
+                      <div className="num" style={{ color: "#17408B" }}>
+                        {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
               <div className="tile is-parent">
                 <div className="tile is-child box" id="stats">
                   {this.state.loading || !this.state.player_info ? (
@@ -250,21 +259,15 @@ export default class renderPlayer extends Component {
                     <div className="columns is-multiline">
                       <div className="column is-one-fifth">
                         <div className="h3">PTS</div>
-                        <div className="stat">
-                          {this.state.player_stats.pts}
-                        </div>
+                        <div className="stat">{this.state.player_stats.pts}</div>
                       </div>
                       <div className="column is-one-fifth">
                         <div className="h3">REB</div>{" "}
-                        <div className="stat">
-                          {this.state.player_stats.reb}
-                        </div>
+                        <div className="stat">{this.state.player_stats.reb}</div>
                       </div>
                       <div className="column is-one-fifth">
                         <div className="h3">AST</div>{" "}
-                        <div className="stat">
-                          {this.state.player_stats.ast}
-                        </div>
+                        <div className="stat">{this.state.player_stats.ast}</div>
                       </div>
                       <div className="column is-one-fifth">
                         <div className="h3">FG%</div>{" "}
@@ -286,21 +289,15 @@ export default class renderPlayer extends Component {
                       </div>
                       <div className="column is-one-fifth">
                         <div className="h3">BLK</div>{" "}
-                        <div className="stat">
-                          {this.state.player_stats.blk}
-                        </div>
+                        <div className="stat">{this.state.player_stats.blk}</div>
                       </div>
                       <div className="column is-one-fifth">
                         <div className="h3">STL</div>{" "}
-                        <div className="stat">
-                          {this.state.player_stats.stl}
-                        </div>
+                        <div className="stat">{this.state.player_stats.stl}</div>
                       </div>
                       <div className="column is-one-fifth">
                         <div className="h3">3PT</div>{" "}
-                        <div className="stat">
-                          {this.state.player_stats.fg3m}
-                        </div>
+                        <div className="stat">{this.state.player_stats.fg3m}</div>
                       </div>
                       <div className="column is-one-fifth">
                         <div className="h3">3P%</div>{" "}
@@ -337,28 +334,6 @@ export default class renderPlayer extends Component {
                   )}
                 </div>
               </div>
-              <div className="tile is-parent">
-                <div className="tile is-child box" id="score">
-                  <div className="h4">SCORE</div>
-                  <div className="num"> {this.state.score} </div>
-                </div>
-              </div>
-              <div className="tile is-parent">
-                <div className="tile is-child box" id="timer">
-                  <div className="h4">TIMER</div>
-                  <div>
-                    {minutes === 0 && seconds === 0 ? (
-                      <div className="h4" style={{ color: "#17408B" }}>
-                        Busted!
-                      </div>
-                    ) : (
-                      <div className="num" style={{ color: "#17408B" }}>
-                        {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -386,3 +361,4 @@ export default class renderPlayer extends Component {
     }
   }
 }
+
