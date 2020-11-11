@@ -361,3 +361,4 @@ export default class renderPlayer extends Component {
     }
   }
 }
+
