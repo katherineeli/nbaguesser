@@ -24,30 +24,23 @@ class NavBar extends Component {
     }
     render () {
         return (
-            <div id="navBar" className="navBar">
-                <div id="title" className="h3 navTitle" style={{color:"black"}}>NBA GUESSER</div> 
-                <nav>
-                    <a id="leaderboard" className="navButton h2" style={{left: 1194, color:"black", textDecoration:"none"}}>LEADERBOARD</a>
-                    <a id="login" className="navButton h2" style={{left: 1376, color:"black", textDecoration:"none"}} onClick={this.openModal}>LOGIN</a>
-                </nav>
+            <div id="navBar" className="navbar">
+                <a id="title" className="h3 navTitle" href="/">NBA GUESSER</a> 
+                <div className="navbar-menu">
+                    <div className="navbar-end">
+                        <a id="leaderboard" className="navbar-item h2" onClick={this.openModal}>LEADERBOARD</a>
+                        {/* TODO: change this to display userid when logged in + dropdown for sign out */}
+                        <a id="login" className="navbar-item h2" href="/login">LOGIN</a>
+                    </div>
+                </div>
                 <Modal isOpen={this.state.showModal}
                 onRequestClose={this.closeModal}
                 className="modal"
                 overlayClassName="overlay">
-                    <h1 className="modTitle">LOGIN</h1>
+                    <button className="delete" onClick={this.closeModal}></button>
                     <div className="modContent">
-                        <h2>Username:</h2>
-                        <input className="modInput"></input>
-                        <h2>Password:</h2>
-                        <input className="modInput"></input>
-                        <button id="cancel" onClick={this.closeModal} className="button is-light">Cancel</button>
-                        <button id="submit" className="button is-primary">Submit</button>
-                        <div id="cont2">
-                            <div className="bigbod" style={{color:"#A7A6A6", textAlign:'center'}}>OR</div>
-                            <a className="h2" style={{color:"black", textAlign:'center'}}>CREATE AN ACCOUNT</a>
-                        </div>
-                        <button id="login" className="button is-primary">Submit</button>
-                        
+                        <h1>LEADERBOARD</h1>
+                        <body>fill this in with leaderboard stats</body>
                     </div>
                 </Modal>
             </div>

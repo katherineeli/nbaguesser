@@ -213,125 +213,125 @@ export default class renderPlayer extends Component {
     if (!this.state.timeout) {
       return (
         <div className="content">
-          <div className="autocomplete player-input">
-            <ReactAutoSuggestDropdown
-              list={this.state.list}
-              showDropdown={this.showDropdown}
-              displayDropdownMenu={this.state.showDropdown}
-              chosenValue={this.state.chosenValue}
-              chooseDropdownItem={this.chooseDropdownItem}
-              updateSearchValue={this.updateSearchValue}
-              searchValue={this.state.searchValue}
-              highlightColour={"#ff9966"}
-            />
+          <div className="inputButtons">
+            <div className="autocomplete player-input">
+              <ReactAutoSuggestDropdown
+                list={this.state.list}
+                showDropdown={this.showDropdown}
+                displayDropdownMenu={this.state.showDropdown}
+                chosenValue={this.state.chosenValue}
+                chooseDropdownItem={this.chooseDropdownItem}
+                updateSearchValue={this.updateSearchValue}
+                searchValue={this.state.searchValue}
+                highlightColour={"#ff9966"}
+              />
+            </div>
+            <button className="button is-light" onClick={this.skip.bind(this)}>Skip</button>
+            <button className="button is-primary" onClick={this.refreshPage}>New Game</button>
           </div>
           <div id="show-info">
-            <button id="skip" className="button is-light" onClick={this.skip.bind(this)}>Skip</button>
-            <button className="button is-primary newGame" onClick={this.refreshPage} style={{ width: 125, height: 44, left: 1112, top: 0 }}>New Game</button>
-            <div className="statContent">
-              <div className="tile is-ancestor">
-                <div className="tile is-parent is-4 is-vertical">
-                  <div className="tile is-child box " id="score">
-                    <div className="h4">SCORE</div>
-                    <div className="num"> {this.state.score} </div>
-                  </div>
-                  <div className="tile is-child box" id="timer">
-                    <div className="h4">TIMER</div>
-                    <div>
-                      {minutes === 0 && seconds === 0 ? (
-                        <div className="h4" style={{ color: "#17408B" }}>
-                          Busted!
-                        </div>
-                      ) : (
-                        <div className="num" style={{ color: "#17408B" }}>
-                          {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-                        </div>
-                      )}
-                    </div>
-                  </div>
+            <div className="tile is-ancestor">
+              <div className="tile is-parent is-4 is-vertical">
+                <div className="tile is-child box " id="score">
+                  <div className="h4">SCORE</div>
+                  <div className="num"> {this.state.score} </div>
                 </div>
-                <div className="tile is-parent">
-                  <div className="tile is-child box" id="stats">
-                    {this.state.loading || !this.state.player_info ? (
-                      <p>Loading...</p>
+                <div className="tile is-child box" id="timer">
+                  <div className="h4">TIMER</div>
+                  <div>
+                    {minutes === 0 && seconds === 0 ? (
+                      <div className="h4" style={{ color: "#17408B" }}>
+                        Busted!
+                      </div>
                     ) : (
-                      <div className="columns is-multiline">
-                        <div className="column is-one-fifth">
-                          <div className="h3">PTS</div>
-                          <div className="stat">{this.state.player_stats.pts}</div>
-                        </div>
-                        <div className="column is-one-fifth">
-                          <div className="h3">REB</div>{" "}
-                          <div className="stat">{this.state.player_stats.reb}</div>
-                        </div>
-                        <div className="column is-one-fifth">
-                          <div className="h3">AST</div>{" "}
-                          <div className="stat">{this.state.player_stats.ast}</div>
-                        </div>
-                        <div className="column is-one-fifth">
-                          <div className="h3">FG%</div>{" "}
-                          <div className="stat">
-                            {this.state.player_stats.fg_pct}
-                          </div>
-                        </div>
-                        <div className="column is-one-fifth">
-                          <div className="h3">FT%</div>{" "}
-                          <div className="stat">
-                            {this.state.player_stats.ft_pct}
-                          </div>
-                        </div>
-                        <div className="column is-one-fifth">
-                          <div className="h3">TO</div>{" "}
-                          <div className="stat">
-                            {this.state.player_stats.turnover}
-                          </div>
-                        </div>
-                        <div className="column is-one-fifth">
-                          <div className="h3">BLK</div>{" "}
-                          <div className="stat">{this.state.player_stats.blk}</div>
-                        </div>
-                        <div className="column is-one-fifth">
-                          <div className="h3">STL</div>{" "}
-                          <div className="stat">{this.state.player_stats.stl}</div>
-                        </div>
-                        <div className="column is-one-fifth">
-                          <div className="h3">3PT</div>{" "}
-                          <div className="stat">{this.state.player_stats.fg3m}</div>
-                        </div>
-                        <div className="column is-one-fifth">
-                          <div className="h3">3P%</div>{" "}
-                          <div className="stat">
-                            {this.state.player_stats.fg3_pct}
-                          </div>
-                        </div>
-                        <div className="column is-half">
-                          <div className="h3 inline">HEIGHT</div>{" "}
-                          <div className="stat inline">
-                            {this.state.player_info.height_feet}'
-                            {this.state.player_info.height_inches}"
-                          </div>
-                        </div>
-                        <div className="column is-half">
-                          <div className="h3 inline">WEIGHT (lbs)</div>
-                          <div className="stat inline">
-                            {this.state.player_info.weight_pounds}
-                          </div>
-                        </div>
-                        <div className="column is-half">
-                          <div className="h3 inline">POSITION</div>
-                          <div className="stat inline">
-                            {this.state.player_info.position}
-                          </div>
-                        </div>
-                        <div className="column is-half">
-                          <div className="h3 inline">CURRENT TEAM</div>
-                          <div className="stat inline">
-                            {this.state.player_info.team.name}
-                          </div>
-                        </div>
+                      <div className="num" style={{ color: "#17408B" }}>
+                        {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
                       </div>
                     )}
                   </div>
+                </div>
+              </div>
+              <div className="tile is-parent">
+                <div className="tile is-child box" id="stats">
+                  {this.state.loading || !this.state.player_info ? (
+                    <p>Loading...</p>
+                  ) : (
+                    <div className="columns is-multiline">
+                      <div className="column is-one-fifth">
+                        <div className="h3">PTS</div>
+                        <div className="stat">{this.state.player_stats.pts}</div>
+                      </div>
+                      <div className="column is-one-fifth">
+                        <div className="h3">REB</div>{" "}
+                        <div className="stat">{this.state.player_stats.reb}</div>
+                      </div>
+                      <div className="column is-one-fifth">
+                        <div className="h3">AST</div>{" "}
+                        <div className="stat">{this.state.player_stats.ast}</div>
+                      </div>
+                      <div className="column is-one-fifth">
+                        <div className="h3">FG%</div>{" "}
+                        <div className="stat">
+                          {this.state.player_stats.fg_pct}
+                        </div>
+                      </div>
+                      <div className="column is-one-fifth">
+                        <div className="h3">FT%</div>{" "}
+                        <div className="stat">
+                          {this.state.player_stats.ft_pct}
+                        </div>
+                      </div>
+                      <div className="column is-one-fifth">
+                        <div className="h3">TO</div>{" "}
+                        <div className="stat">
+                          {this.state.player_stats.turnover}
+                        </div>
+                      </div>
+                      <div className="column is-one-fifth">
+                        <div className="h3">BLK</div>{" "}
+                        <div className="stat">{this.state.player_stats.blk}</div>
+                      </div>
+                      <div className="column is-one-fifth">
+                        <div className="h3">STL</div>{" "}
+                        <div className="stat">{this.state.player_stats.stl}</div>
+                      </div>
+                      <div className="column is-one-fifth">
+                        <div className="h3">3PT</div>{" "}
+                        <div className="stat">{this.state.player_stats.fg3m}</div>
+                      </div>
+                      <div className="column is-one-fifth">
+                        <div className="h3">3P%</div>{" "}
+                        <div className="stat">
+                          {this.state.player_stats.fg3_pct}
+                        </div>
+                      </div>
+                      <div className="column is-half">
+                        <div className="h3 inline">HEIGHT</div>{" "}
+                        <div className="stat inline">
+                          {this.state.player_info.height_feet}'
+                          {this.state.player_info.height_inches}"
+                        </div>
+                      </div>
+                      <div className="column is-half">
+                        <div className="h3 inline">WEIGHT (lbs)</div>
+                        <div className="stat inline">
+                          {this.state.player_info.weight_pounds}
+                        </div>
+                      </div>
+                      <div className="column is-half">
+                        <div className="h3 inline">POSITION</div>
+                        <div className="stat inline">
+                          {this.state.player_info.position}
+                        </div>
+                      </div>
+                      <div className="column is-half">
+                        <div className="h3 inline">CURRENT TEAM</div>
+                        <div className="stat inline">
+                          {this.state.player_info.team.name}
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
