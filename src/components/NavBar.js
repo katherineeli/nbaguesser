@@ -4,24 +4,24 @@ import "../styles/styles.css";
 import "../../node_modules/bulma";
 import firebase from "./fireBase";
 
-Modal.setAppElement('body');
+Modal.setAppElement("body");
 const auth = firebase.auth();
 
 class NavBar extends Component {
-    constructor () {
-        super();
-        this.state = {
-            showModal: false,
-            leaderboard: [],
-            currentUser: null
-        };
-        this.openModal = this.openModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
-        this.signOut = this.signOut.bind(this);
-    }
-    openModal () {
-        this.setState({showModal: true});
-    }
+  constructor() {
+    super();
+    this.state = {
+      showModal: false,
+      leaderboard: [],
+      currentUser: null,
+    };
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.signOut = this.signOut.bind(this);
+  }
+  openModal() {
+    this.setState({ showModal: true });
+  }
 
   closeModal() {
     this.setState({ showModal: false });
@@ -31,7 +31,7 @@ class NavBar extends Component {
   updateLeaderboard() {
     const db = firebase.firestore();
     let leaderData = [];
-    let me = this
+    let me = this;
     db.collection("scores")
       .orderBy("score", "desc")
       .limit(20)
@@ -52,27 +52,29 @@ class NavBar extends Component {
         });
       });
   }
-    async signOut() {
-        auth.signOut();
-        alert("Signed Out");
-    }
-
-  componentDidMount(){
-    let me = this
-    firebase.auth().onAuthStateChanged(function(currentUser) {
-        if (currentUser){
-            me.setState({
-                currentUser: currentUser
-            })
-        }
-    })
-
+  signOut() {
+    auth.signOut();
   }
 
-  componentDidUpdate(prev, state){
-      if (!state.showModal & this.state.showModal){
-        this.updateLeaderboard()
+  componentDidMount() {
+    let me = this;
+    firebase.auth().onAuthStateChanged(function (currentUser) {
+      if (currentUser) {
+        me.setState({
+          currentUser: currentUser,
+        });
+      } else {
+        me.setState({
+          currentUser: null,
+        });
       }
+    });
+  }
+
+  componentDidUpdate(prev, state) {
+    if (!state.showModal & this.state.showModal) {
+      this.updateLeaderboard();
+    }
   }
 
   render() {
@@ -90,9 +92,18 @@ class NavBar extends Component {
             >
               LEADERBOARD
             </a>
-            {/* TODO: change this to display userid when logged in + dropdown for sign out */}
             <a id="login" className="navbar-item h2" href="/login">
-              {this.state.currentUser ? 'Welcome, ' + this.state.currentUser.email.split('@')[0] : 'LOGIN'}
+              {this.state.currentUser
+                ? "Welcome, " + this.state.currentUser.email.split("@")[0]
+                : "LOGIN"}
+            </a>
+            <a
+              id="signOut"
+              className="navbar-item h2"
+              onClick={this.signOut}
+              href="/login"
+            >
+              SIGN OUT
             </a>
           </div>
         </div>
@@ -116,14 +127,13 @@ class NavBar extends Component {
                 </thead>
                 <tbody id="leaderboard">
                   {this.state.leaderboard.map((x, index) => (
-                    <tr key = {index}>
+                    <tr key={index}>
                       <td>{x.rank}</td>
                       <td>{x.email}</td>
                       <td>{x.score}</td>
                     </tr>
                   ))}
                 </tbody>
-                {/* </div> */}
               </table>
             </div>
           </div>
