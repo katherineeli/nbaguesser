@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import "../../node_modules/bulma";
 import "../styles/styles.css";
-// import Timer from "./timer";
-// import Autocomplete from "./autocomplete.js";
 import ReactAutoSuggestDropdown from "react-autosuggest-dropdown-menu";
 import players from "./players.js";
 import firebase from "./fireBase";

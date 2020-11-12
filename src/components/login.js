@@ -11,7 +11,6 @@ class Login extends Component {
     this.state = { toGame: false };
     this.signUp = this.signUp.bind(this);
     this.signIn = this.signIn.bind(this);
-    this.signOut = this.signOut.bind(this);
   }
   async signUp() {
     let errorMessage;
@@ -50,11 +49,6 @@ class Login extends Component {
     }
   }
 
-  async signOut() {
-    auth.signOut();
-    alert("Signed Out");
-  }
-
   render() {
     return (
       <>
@@ -74,15 +68,13 @@ class Login extends Component {
               <input className="userInput" type="password" placeholder="password" id="password" />
               <br /><br/>
               <button className="button is-primary" onClick={this.signIn} id="signIn">Sign In</button>
-              <button className="button is-light">Cancel</button>
               <br/>
-              <button onClick={this.signOut} id="signOut">Sign Out</button>
               <br/><hr/>
               <h1>CREATE ACCOUNT</h1>
               <h2>Username</h2>
-              <input className="userInput" type="email" placeholder="email" id="email"/>
+              <input className="userInput" type="email" placeholder="email" id="createEmail"/>
               <h2>Password</h2>
-              <input className="userInput" type="password" placeholder="password" id="password"/>
+              <input className="userInput" type="password" placeholder="password" id="createPassword"/>
               <br />
               <br />
               <button className="button is-primary submit" onClick={this.signUp} id="signUp">Sign Up</button>

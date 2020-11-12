@@ -4,22 +4,24 @@ import "../styles/styles.css";
 import "../../node_modules/bulma";
 import firebase from "./fireBase";
 
-Modal.setAppElement("body");
+Modal.setAppElement('body');
+const auth = firebase.auth();
 
 class NavBar extends Component {
-  constructor() {
-    super();
-    this.state = {
-      showModal: false,
-      leaderboard: [],
-      currentUser: null
-    };
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-  }
-  openModal() {
-    this.setState({ showModal: true });
-  }
+    constructor () {
+        super();
+        this.state = {
+            showModal: false,
+            leaderboard: [],
+            currentUser: null
+        };
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+        this.signOut = this.signOut.bind(this);
+    }
+    openModal () {
+        this.setState({showModal: true});
+    }
 
   closeModal() {
     this.setState({ showModal: false });
@@ -50,6 +52,10 @@ class NavBar extends Component {
         });
       });
   }
+    async signOut() {
+        auth.signOut();
+        alert("Signed Out");
+    }
 
   componentDidMount(){
     let me = this
