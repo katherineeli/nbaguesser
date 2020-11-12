@@ -6,7 +6,7 @@ import '../node_modules/bulma';
 import './styles/styles.css';
 import { Route } from 'react-router';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 
 class App extends Component {
