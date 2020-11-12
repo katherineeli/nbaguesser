@@ -5,9 +5,9 @@ import "../styles/styles.css";
 // import Autocomplete from "./autocomplete.js";
 import ReactAutoSuggestDropdown from "react-autosuggest-dropdown-menu";
 import players from "./players.js";
-import firebase from './fireBase';
+import firebase from "./fireBase";
 
-const db = firebase.firestore()
+const db = firebase.firestore();
 
 export default class renderPlayer extends Component {
   constructor() {
@@ -103,32 +103,23 @@ export default class renderPlayer extends Component {
       this.state.minutes === 0 &&
       this.state.seconds === 0
     ) {
-      
       this.setState({
         timeout: true,
       });
-      
-      console.log(firebase.auth().currentUser)
 
-      db.collection("scores").add({
-        email: firebase.auth().currentUser.email,
-        score: this.state.score
-    })
-    .then(function() {
-        console.log("Document successfully written!");
-    })
-    .catch(function(error) {
-        console.error("Error writing document: ", error);
-    });
-
-    db.collection("scores").orderBy("score", "desc").limit(10).get()
-    .then(function(snapshot){
-      snapshot.forEach(function(document){
-        console.log(document.data().email)
-        console.log(document.data().score)
-      })
-    })
-
+      if (firebase.auth().currentUser) {
+        db.collection("scores")
+          .add({
+            email: firebase.auth().currentUser.email,
+            score: this.state.score,
+          })
+          .then(function () {
+            console.log("Document successfully written!");
+          })
+          .catch(function (error) {
+            console.error("Error writing document: ", error);
+          });
+      }
     }
   }
 
@@ -226,8 +217,12 @@ export default class renderPlayer extends Component {
                 highlightColour={"#ff9966"}
               />
             </div>
-            <button className="button is-light" onClick={this.skip.bind(this)}>Skip</button>
-            <button className="button is-primary" onClick={this.refreshPage}>New Game</button>
+            <button className="button is-light" onClick={this.skip.bind(this)}>
+              Skip
+            </button>
+            <button className="button is-primary" onClick={this.refreshPage}>
+              New Game
+            </button>
           </div>
           <div id="show-info">
             <div className="tile is-ancestor">
@@ -259,15 +254,21 @@ export default class renderPlayer extends Component {
                     <div className="columns is-multiline">
                       <div className="column is-one-fifth">
                         <div className="h3">PTS</div>
-                        <div className="stat">{this.state.player_stats.pts}</div>
+                        <div className="stat">
+                          {this.state.player_stats.pts}
+                        </div>
                       </div>
                       <div className="column is-one-fifth">
                         <div className="h3">REB</div>{" "}
-                        <div className="stat">{this.state.player_stats.reb}</div>
+                        <div className="stat">
+                          {this.state.player_stats.reb}
+                        </div>
                       </div>
                       <div className="column is-one-fifth">
                         <div className="h3">AST</div>{" "}
-                        <div className="stat">{this.state.player_stats.ast}</div>
+                        <div className="stat">
+                          {this.state.player_stats.ast}
+                        </div>
                       </div>
                       <div className="column is-one-fifth">
                         <div className="h3">FG%</div>{" "}
@@ -289,15 +290,21 @@ export default class renderPlayer extends Component {
                       </div>
                       <div className="column is-one-fifth">
                         <div className="h3">BLK</div>{" "}
-                        <div className="stat">{this.state.player_stats.blk}</div>
+                        <div className="stat">
+                          {this.state.player_stats.blk}
+                        </div>
                       </div>
                       <div className="column is-one-fifth">
                         <div className="h3">STL</div>{" "}
-                        <div className="stat">{this.state.player_stats.stl}</div>
+                        <div className="stat">
+                          {this.state.player_stats.stl}
+                        </div>
                       </div>
                       <div className="column is-one-fifth">
                         <div className="h3">3PT</div>{" "}
-                        <div className="stat">{this.state.player_stats.fg3m}</div>
+                        <div className="stat">
+                          {this.state.player_stats.fg3m}
+                        </div>
                       </div>
                       <div className="column is-one-fifth">
                         <div className="h3">3P%</div>{" "}
@@ -361,4 +368,3 @@ export default class renderPlayer extends Component {
     }
   }
 }
-
