@@ -94,9 +94,10 @@ class NavBar extends Component {
             </a>
             <a id="login" className="navbar-item h2" href="/login">
               {this.state.currentUser
-                ? "Welcome, " + this.state.currentUser.email.split("@")[0]
+                ? "WELCOME, " + this.state.currentUser.email.split("@")[0].toUpperCase()
                 : "LOGIN"}
             </a>
+            {this.state.currentUser ?
             <a
               id="signOut"
               className="navbar-item h2"
@@ -105,6 +106,7 @@ class NavBar extends Component {
             >
               SIGN OUT
             </a>
+            : ""} 
           </div>
         </div>
         <Modal

@@ -209,3 +209,9 @@ input {
 .suggestions li:not(:last-of-type) {
   border-bottom: 1px solid #999;
 }
+
+.pic{
+  padding-top: 60px;
+  padding-left: 450px;
+  padding-right: 450px
+}

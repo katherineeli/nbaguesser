@@ -8,9 +8,10 @@ const auth = firebase.auth();
 class Login extends Component {
   constructor(props) {
     super();
-    this.state = { toGame: false };
+    this.state = { toGame: false, currentUser: null };
     this.signUp = this.signUp.bind(this);
     this.signIn = this.signIn.bind(this);
+    this.deleteUser = this.deleteUser.bind(this);
   }
   async signUp() {
     let errorMessage;
@@ -49,6 +50,30 @@ class Login extends Component {
     }
   }
 
+  async deleteUser(){
+    if (firebase.auth().currentUser) {
+      firebase.auth().currentUser.delete()
+      .catch((e) => {
+        alert(e)
+      })
+    }
+  }
+
+  componentDidMount() {
+    let me = this;
+    firebase.auth().onAuthStateChanged(function (currentUser) {
+      if (currentUser) {
+        me.setState({
+          currentUser: currentUser,
+        });
+      } else {
+        me.setState({
+          currentUser: null,
+        });
+      }
+    });
+  }
+
   render() {
     return (
       <>
@@ -68,6 +93,10 @@ class Login extends Component {
               <input className="userInput" type="password" placeholder="password" id="password" />
               <br /><br/>
               <button className="button is-primary" onClick={this.signIn} id="signIn">Sign In</button>
+              {this.state.currentUser
+              ? <button style = {{width: 118, backgroundColor: '#C9082A', color: 'white'}} className="button " onClick={this.deleteUser} id="deleteUser">Delete Account</button>
+              : ""
+              }
               <br/>
               <br/><hr/>
               <h1>CREATE ACCOUNT</h1>
@@ -78,6 +107,7 @@ class Login extends Component {
               <br />
               <br />
               <button className="button is-primary submit" onClick={this.signUp} id="signUp">Sign Up</button>
+              
             </div>
             <div id="firebaseui-auth-container"></div>
             {/* <div id="loader">Loading...</div> */}
