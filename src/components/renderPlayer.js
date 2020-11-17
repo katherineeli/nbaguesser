@@ -20,12 +20,13 @@ export default class renderPlayer extends Component {
       form_value: "",
       score: 0,
       timeout: false,
-      minutes: 0,
-      seconds: 10,
+      minutes: 3,
+      seconds: 0,
       chosenValue: "",
       searchValue: "",
       showDropdown: false,
       list: players,
+      disableSkip: false
     };
   }
 
@@ -88,7 +89,7 @@ export default class renderPlayer extends Component {
       player_stats: player_stats_json.data[0],
       player_info: player_info_json,
     });
-    console.log(this.state);
+ //   console.log(this.state);
   }
 
   componentWillUnmount() {
@@ -112,10 +113,10 @@ export default class renderPlayer extends Component {
             score: this.state.score,
           })
           .then(function () {
-            console.log("Document successfully written!");
+     //       console.log("Document successfully written!");
           })
           .catch(function (error) {
-            console.error("Error writing document: ", error);
+     //       console.error("Error writing document: ", error);
           });
       }
     }
@@ -179,6 +180,12 @@ export default class renderPlayer extends Component {
   };
 
   skip = () => {
+    this.setState({
+      disableSkip: true
+    });
+
+    setTimeout(() => this.setState({ disableSkip: false }), 2000);
+
     if (this.state.minutes == 0 & this.state.seconds <= 5){
       this.setState({
         minutes: 0,
@@ -187,7 +194,7 @@ export default class renderPlayer extends Component {
       return
     }
     this.newPlayer();
-    let newSeconds = this.state.seconds - 5;
+    let newSeconds = this.state.seconds - 4;
     if (newSeconds < 0) {
       this.setState(({ minutes}) => ({
         minutes: minutes - 1,
@@ -222,7 +229,7 @@ export default class renderPlayer extends Component {
                 highlightColour={"#ff9966"}
               />
             </div>
-            <button className="button is-light" onClick={this.skip.bind(this)}>
+            <button className="button is-light" onClick={this.skip.bind(this)} disabled = {this.state.disableSkip}>
               Skip
             </button>
             <button className="button is-primary" onClick={this.refreshPage}>
@@ -351,7 +358,7 @@ export default class renderPlayer extends Component {
         </div>
       );
     } else {
-      console.log("timed out");
+//      console.log("timed out");
       return (
         <div className="content">
           <div className="h4" style={{ color: "#17408B" }}>
