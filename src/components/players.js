@@ -177,4 +177,4 @@ export default [{valueToSearch: "Alex Abrines"},             {valueToSearch: "Qu
  {valueToSearch: "Delon Wright"},             {valueToSearch: "Guerschon Yabusele"},       {valueToSearch: "James Young"},             
  {valueToSearch: "Joe Young"},                {valueToSearch: "Nick Young"},               {valueToSearch: "Thaddeus Young"},          
  {valueToSearch: "Cody Zeller"},              {valueToSearch: "Tyler Zeller"},             {valueToSearch: "Paul Zipser"},             
- {valueToSearch: "Ante Zizic"},               {valueToSearch: "Ivica Zubac"}]
+ {valueToSearch: "Ante Zizic"},               {valueToSearch: "Ivica Zubac"}, {valueToSearch: "Trae Young"}, {valueToSearch: "Luka Doncic"}]

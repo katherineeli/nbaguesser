@@ -20,8 +20,8 @@ export default class renderPlayer extends Component {
       form_value: "",
       score: 0,
       timeout: false,
-      minutes: 1,
-      seconds: 3,
+      minutes: 0,
+      seconds: 10,
       chosenValue: "",
       searchValue: "",
       showDropdown: false,
@@ -179,10 +179,17 @@ export default class renderPlayer extends Component {
   };
 
   skip = () => {
+    if (this.state.minutes == 0 & this.state.seconds <= 5){
+      this.setState({
+        minutes: 0,
+        seconds: 0
+      });
+      return
+    }
     this.newPlayer();
     let newSeconds = this.state.seconds - 5;
     if (newSeconds < 0) {
-      this.setState(({ minutes, seconds }) => ({
+      this.setState(({ minutes}) => ({
         minutes: minutes - 1,
         seconds: 60 + newSeconds,
       }));
