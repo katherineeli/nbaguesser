@@ -15,8 +15,8 @@ class Login extends Component {
   }
   async signUp() {
     let errorMessage;
-    let email = document.getElementById("email");
-    let password = document.getElementById("password");
+    let email = document.getElementById("createEmail");
+    let password = document.getElementById("createPassword");
     const promise = await auth
       .createUserWithEmailAndPassword(email.value, password.value)
       .catch((e) => {
@@ -94,14 +94,14 @@ class Login extends Component {
               <br /><br/>
               <button className="button is-primary" onClick={this.signIn} id="signIn">Sign In</button>
               {this.state.currentUser
-              ? <button style = {{width: 118, backgroundColor: '#C9082A', color: 'white'}} className="button " onClick={this.deleteUser} id="deleteUser">Delete Account</button>
+              ? <button style = {{width: 118, backgroundColor: '#C9082A', color: 'white'}} className="button" onClick={this.deleteUser} id="deleteUser">Delete Account</button>
               : ""
               }
               <br/>
               <br/><hr/>
               <h1>CREATE ACCOUNT</h1>
               <h2>Username</h2>
-              <input className="userInput" type="email" placeholder="email" id="createEmail"/>
+              <input className="userInput" type="text" placeholder="email" id="createEmail"/>
               <h2>Password</h2>
               <input className="userInput" type="password" placeholder="password" id="createPassword"/>
               <br />

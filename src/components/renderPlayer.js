@@ -89,7 +89,8 @@ export default class renderPlayer extends Component {
       player_stats: player_stats_json.data[0],
       player_info: player_info_json,
     });
- //   console.log(this.state);
+   console.log("The answer is " + this.state.player_info.first_name + " " + this.state.player_info.last_name + " dummy");
+  
   }
 
   componentWillUnmount() {
@@ -184,7 +185,7 @@ export default class renderPlayer extends Component {
       disableSkip: true
     });
 
-    setTimeout(() => this.setState({ disableSkip: false }), 2000);
+    setTimeout(() => this.setState({ disableSkip: false }), 3500);
 
     if (this.state.minutes == 0 & this.state.seconds <= 5){
       this.setState({

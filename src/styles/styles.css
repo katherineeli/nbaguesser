@@ -211,6 +211,8 @@ input {
 }
 
 .pic{
+  text-align: center;
+  font-size: 50px;
   padding-top: 60px;
   padding-left: 450px;
   padding-right: 450px

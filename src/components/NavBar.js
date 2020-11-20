@@ -83,6 +83,16 @@ class NavBar extends Component {
         <a id="title" className="h3 navTitle" href="/">
           NBA GUESSER
         </a>
+     
+        {this.state.currentUser ?
+            <a
+              id="title"
+              className="h3 navTitle"
+              href="/game"
+            >
+              GAME
+            </a>
+            : ""} 
         <div className="navbar-menu">
           <div className="navbar-end">
             <a
@@ -93,10 +103,12 @@ class NavBar extends Component {
               LEADERBOARD
             </a>
             <a id="login" className="navbar-item h2" href="/login">
+              
               {this.state.currentUser
                 ? "WELCOME, " + this.state.currentUser.email.split("@")[0].toUpperCase()
                 : "LOGIN"}
             </a>
+            
             {this.state.currentUser ?
             <a
               id="signOut"

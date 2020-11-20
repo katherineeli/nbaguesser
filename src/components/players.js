@@ -162,7 +162,7 @@ export default [{valueToSearch: "Alex Abrines"},             {valueToSearch: "Qu
  {valueToSearch: "Evan Turner"},              {valueToSearch: "Myles Turner"},             {valueToSearch: "Ekpe Udoh"},               
  {valueToSearch: "Tyler Ulis"},               {valueToSearch: "Jonas Valančiūnas"},        {valueToSearch: "Denzel Valentine"},        
  {valueToSearch: "Fred VanVleet"},            {valueToSearch: "Rashad Vaughn"},            {valueToSearch: "Noah Vonleh"},             
- {valueToSearch: "Nikola Vučević"},           {valueToSearch: "Dwyane Wade"},              {valueToSearch: "Dion Waiters"},            
+ {valueToSearch: "Nikola Vucevic"},           {valueToSearch: "Dwyane Wade"},              {valueToSearch: "Dion Waiters"},            
  {valueToSearch: "Kemba Walker"},             {valueToSearch: "John Wall"},                {valueToSearch: "Tyrone Wallace"},          
  {valueToSearch: "Taurean Prince"},           {valueToSearch: "Derrick Walton"},           {valueToSearch: "Jameel Warney"},           
  {valueToSearch: "T.J. Warren"},              {valueToSearch: "Travis Wear"},              {valueToSearch: "James Webb III"},          
@@ -177,4 +177,5 @@ export default [{valueToSearch: "Alex Abrines"},             {valueToSearch: "Qu
  {valueToSearch: "Delon Wright"},             {valueToSearch: "Guerschon Yabusele"},       {valueToSearch: "James Young"},             
  {valueToSearch: "Joe Young"},                {valueToSearch: "Nick Young"},               {valueToSearch: "Thaddeus Young"},          
  {valueToSearch: "Cody Zeller"},              {valueToSearch: "Tyler Zeller"},             {valueToSearch: "Paul Zipser"},             
- {valueToSearch: "Ante Zizic"},               {valueToSearch: "Ivica Zubac"}, {valueToSearch: "Trae Young"}, {valueToSearch: "Luka Doncic"}]
+ {valueToSearch: "Ante Zizic"},               {valueToSearch: "Ivica Zubac"}, {valueToSearch: "Trae Young"}, {valueToSearch: "Luka Doncic"}, {valueToSearch: "Collin Sexton"}, 
+ {valueToSearch: "Darius Garland"}, {valueToSearch: "Mikal Bridges"}]
