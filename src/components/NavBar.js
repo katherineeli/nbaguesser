@@ -83,18 +83,17 @@ class NavBar extends Component {
         <a id="title" className="h3 navTitle" href="/">
           NBA GUESSER
         </a>
-     
-        {this.state.currentUser ?
+        <div className="navbar-menu">
+          <div className="navbar-end">
+          {this.state.currentUser ?
             <a
-              id="title"
-              className="h3 navTitle"
+              id="game"
+              className="h2 navbar-item"
               href="/game"
             >
               GAME
             </a>
             : ""} 
-        <div className="navbar-menu">
-          <div className="navbar-end">
             <a
               id="leaderboard"
               className="navbar-item h2"
