@@ -6,7 +6,7 @@ import firebase from "./fireBase";
 
 Modal.setAppElement("body");
 const auth = firebase.auth();
-
+const db = firebase.firestore()
 class NavBar extends Component {
   constructor() {
     super();
@@ -14,6 +14,7 @@ class NavBar extends Component {
       showModal: false,
       leaderboard: [],
       currentUser: null,
+      name: null
     };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -39,6 +40,7 @@ class NavBar extends Component {
       .then(function (snapshot) {
         let rank = 1;
         snapshot.forEach(function (document) {
+          console.log(document.data())
           leaderData.push({
             rank: rank,
             email: document.data().email,
@@ -60,9 +62,15 @@ class NavBar extends Component {
     let me = this;
     firebase.auth().onAuthStateChanged(function (currentUser) {
       if (currentUser) {
-        me.setState({
-          currentUser: currentUser,
-        });
+        firebase.firestore().collection("names").doc(currentUser.email)
+        .get()
+        .then(function(doc){
+          me.setState({
+            currentUser: currentUser,
+            name: doc.data().name
+          });
+        })
+        
       } else {
         me.setState({
           currentUser: null,
@@ -104,7 +112,7 @@ class NavBar extends Component {
             <a id="login" className="navbar-item h2" href="/login">
               
               {this.state.currentUser
-                ? "WELCOME, " + this.state.currentUser.email.split("@")[0].toUpperCase()
+                ? "WELCOME, " + this.state.name.toUpperCase()
                 : "LOGIN"}
             </a>
             
@@ -139,13 +147,24 @@ class NavBar extends Component {
                   </tr>
                 </thead>
                 <tbody id="leaderboard">
-                  {this.state.leaderboard.map((x, index) => (
+                  {/* {this.state.leaderboard.map(function(x, index){
+                    firebase.firestore().collection("names").doc(x.email)
+                    .get()
+                    .then(function(doc){
+                      return (<tr key={index}>
+                      <td>{doc.data().name}</td>
+                      <td>{x.score}</td>
+                    </tr>)
+                    }); */}
+                    {/* {console.log(this.state.leaderboard)} */}
+                    {this.state.leaderboard.map((x, index) => (
                     <tr key={index}>
                       <td>{x.rank}</td>
-                      <td>{x.email}</td>
+                      <td>{x.email.split("@")[0].toUpperCase()}</td>
                       <td>{x.score}</td>
                     </tr>
-                  ))}
+                    ))}
+               
                 </tbody>
               </table>
             </div>

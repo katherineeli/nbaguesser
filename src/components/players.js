@@ -178,4 +178,4 @@ export default [{valueToSearch: "Alex Abrines"},             {valueToSearch: "Qu
  {valueToSearch: "Joe Young"},                {valueToSearch: "Nick Young"},               {valueToSearch: "Thaddeus Young"},          
  {valueToSearch: "Cody Zeller"},              {valueToSearch: "Tyler Zeller"},             {valueToSearch: "Paul Zipser"},             
  {valueToSearch: "Ante Zizic"},               {valueToSearch: "Ivica Zubac"}, {valueToSearch: "Trae Young"}, {valueToSearch: "Luka Doncic"}, {valueToSearch: "Collin Sexton"}, 
- {valueToSearch: "Darius Garland"}, {valueToSearch: "Mikal Bridges"}]
+ {valueToSearch: "Darius Garland"},   {valueToSearch: "Jaren Jackson Jr."}, {valueToSearch: "Shai Gilgeous-Alexander"},  {valueToSearch: "Kevin Knox"},{valueToSearch: "Mikal Bridges"}]

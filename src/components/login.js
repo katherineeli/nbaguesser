@@ -1,28 +1,44 @@
 import React, { Component } from "react";
 import firebase from "./fireBase";
 import { Redirect } from "react-router-dom";
+import NavBar from "./NavBar.js";
 import { isCompositeComponent } from "react-dom/test-utils";
 
 const auth = firebase.auth();
+const db = firebase.firestore();
 
 class Login extends Component {
   constructor(props) {
     super();
-    this.state = { toGame: false, currentUser: null };
+    this.state = { toGame: false, currentUser: null, email: null };
     this.signUp = this.signUp.bind(this);
     this.signIn = this.signIn.bind(this);
     this.deleteUser = this.deleteUser.bind(this);
+    this.updateName = this.updateName.bind(this);
   }
   async signUp() {
     let errorMessage;
     let email = document.getElementById("createEmail");
     let password = document.getElementById("createPassword");
+    let name = document.getElementById("createName");
     const promise = await auth
       .createUserWithEmailAndPassword(email.value, password.value)
       .catch((e) => {
         errorMessage = e.code;
         alert(e.message);
       });
+     // console.log(name.value)
+    if (promise){
+      db.collection("names").doc(email.value)
+      .set({
+        email: email.value,
+        name: name.value
+      })
+      this.setState({
+        email: email.value
+      })
+    }
+  
 
     if (errorMessage === undefined) {
       this.setState({ toGame: true });
@@ -46,7 +62,7 @@ class Login extends Component {
       });
 
     if (errorMessage === undefined) {
-      this.setState({ toGame: true });
+      this.setState({ toGame: true});
     }
   }
 
@@ -59,16 +75,30 @@ class Login extends Component {
     }
   }
 
+   updateName(){
+    let name = document.getElementById("updateName").value
+    
+    db.collection("names").doc(this.state.email).update({"name": name})
+    db.collection("names").doc(this.state.email).get().then(
+      function(doc) {
+        console.log(doc.data().name);
+      }
+    );
+    this.setState({ toGame: true});
+  }
+
   componentDidMount() {
     let me = this;
     firebase.auth().onAuthStateChanged(function (currentUser) {
       if (currentUser) {
         me.setState({
           currentUser: currentUser,
+          email: currentUser.email
         });
       } else {
         me.setState({
           currentUser: null,
+          email: null
         });
       }
     });
@@ -78,6 +108,7 @@ class Login extends Component {
     return (
       <>
         {this.state.toGame ? <Redirect to="/game" /> : null}
+        <NavBar/>
         <div>
           <head>
             <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
@@ -87,7 +118,7 @@ class Login extends Component {
           <body>
             <div id="formContainer" className="loginContent">
               <h1>LOGIN</h1>
-              <h2>Username</h2>
+              <h2>Email</h2>
               <input className="userInput" type="email" placeholder="email" id="email" />
               <h2>Password</h2>
               <input className="userInput" type="password" placeholder="password" id="password" />
@@ -99,18 +130,35 @@ class Login extends Component {
               }
               <br/>
               <br/><hr/>
+              {this.state.currentUser ?
+              <div>
+                <h1>UPDATE DISPLAY NAME</h1>
+                <h2>Display Name</h2>
+              <input className="userInput" type="text" placeholder="name" id="updateName"/>
+              <br />
+              <br />
+              <button className="button is-primary submit" onClick={this.updateName} id="Update">Update</button>
+              </div>
+              : 
+              <div>
               <h1>CREATE ACCOUNT</h1>
-              <h2>Username</h2>
-              <input className="userInput" type="text" placeholder="email" id="createEmail"/>
+              <h2>Email</h2>
+              <input className="userInput" type="email" placeholder="email" id="createEmail"/>
               <h2>Password</h2>
               <input className="userInput" type="password" placeholder="password" id="createPassword"/>
+              <h2>Display Name</h2>
+              <input className="userInput" type="text" placeholder="name" id="createName"/>
               <br />
               <br />
               <button className="button is-primary submit" onClick={this.signUp} id="signUp">Sign Up</button>
+              </div>
+              }
+              
+             
               
             </div>
             <div id="firebaseui-auth-container"></div>
-            {/* <div id="loader">Loading...</div> */}
+            
             <script src="fireBase.js"></script>
             <script src="temp.js" async defer></script>
           </body>
@@ -120,3 +168,13 @@ class Login extends Component {
   }
 }
 export default Login;
+
+
+/*
+{this.state.leaderboard.map((x, index) => (
+                    <tr key={index}>
+                      <td>{x.rank}</td>
+                      <td>{x.email}</td>
+                      <td>{x.score}</td>
+                    </tr>
+                  ))}*/

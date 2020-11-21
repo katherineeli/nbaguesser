@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import RenderPlayer from "./components/renderPlayer.js";
-import NavBar from "./components/NavBar.js";
 import Login from "./components/login.js";
 import Home from "./components/home.js";
 import '../node_modules/bulma';
@@ -17,9 +16,7 @@ class App extends Component {
     return (
       
       <div className="App">
-        
-        <NavBar/>
-  
+
         <Router>
         <Route path={"/game"} component={RenderPlayer} />
         <Route path={"/login"} component={Login} />
