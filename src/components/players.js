@@ -43,7 +43,7 @@ export default [{valueToSearch: "Alex Abrines"},             {valueToSearch: "Qu
 {valueToSearch: "Matthew Dellavedova"},      {valueToSearch: "Luol Deng"},                {valueToSearch: "DeMar DeRozan"},           
 {valueToSearch: "Cheick Diallo"},            {valueToSearch: "Gorgui Dieng"},             {valueToSearch: "Spencer Dinwiddie"},
 {valueToSearch: "Tyler Dorsey"},             {valueToSearch: "Damyean Dotson"},           {valueToSearch: "Milton Doyle"},            
-{valueToSearch: "PJ Dozier"},                {valueToSearch: "Goran Dragić"},             {valueToSearch: "Larry Drew II"},           
+{valueToSearch: "PJ Dozier"},                {valueToSearch: "Goran Dragic"},             {valueToSearch: "Larry Drew II"},           
 {valueToSearch: "Andre Drummond"},           {valueToSearch: "Jared Dudley"},             {valueToSearch: "Kris Dunn"},               
 {valueToSearch: "Kevin Durant"},             {valueToSearch: "Jarell Eddie"},             {valueToSearch: "Henry Ellenson"},          
 {valueToSearch: "Wayne Ellington"},          {valueToSearch: "Joel Embiid"},              {valueToSearch: "James Ennis"},             
@@ -160,7 +160,7 @@ export default [{valueToSearch: "Alex Abrines"},             {valueToSearch: "Qu
  {valueToSearch: "Klay Thompson"},            {valueToSearch: "Tristan Thompson"},         {valueToSearch: "Sindarius Thornwell"},     
  {valueToSearch: "Anthony Tolliver"},         {valueToSearch: "Karl-Anthony Towns"},       {valueToSearch: "P.J. Tucker"},             
  {valueToSearch: "Evan Turner"},              {valueToSearch: "Myles Turner"},             {valueToSearch: "Ekpe Udoh"},               
- {valueToSearch: "Tyler Ulis"},               {valueToSearch: "Jonas Valančiūnas"},        {valueToSearch: "Denzel Valentine"},        
+ {valueToSearch: "Tyler Ulis"},               {valueToSearch: "Jonas Valanciunas"},        {valueToSearch: "Denzel Valentine"},        
  {valueToSearch: "Fred VanVleet"},            {valueToSearch: "Rashad Vaughn"},            {valueToSearch: "Noah Vonleh"},             
  {valueToSearch: "Nikola Vucevic"},           {valueToSearch: "Dwyane Wade"},              {valueToSearch: "Dion Waiters"},            
  {valueToSearch: "Kemba Walker"},             {valueToSearch: "John Wall"},                {valueToSearch: "Tyrone Wallace"},          
@@ -178,4 +178,4 @@ export default [{valueToSearch: "Alex Abrines"},             {valueToSearch: "Qu
  {valueToSearch: "Joe Young"},                {valueToSearch: "Nick Young"},               {valueToSearch: "Thaddeus Young"},          
  {valueToSearch: "Cody Zeller"},              {valueToSearch: "Tyler Zeller"},             {valueToSearch: "Paul Zipser"},             
  {valueToSearch: "Ante Zizic"},               {valueToSearch: "Ivica Zubac"}, {valueToSearch: "Trae Young"}, {valueToSearch: "Luka Doncic"}, {valueToSearch: "Collin Sexton"}, 
- {valueToSearch: "Darius Garland"},   {valueToSearch: "Jaren Jackson Jr."}, {valueToSearch: "Shai Gilgeous-Alexander"},  {valueToSearch: "Kevin Knox"},{valueToSearch: "Mikal Bridges"}]
+ {valueToSearch: "Darius Garland"},   {valueToSearch: "Jaren Jackson Jr."}, {valueToSearch: "Shai Gilgeous-Alexander"},  {valueToSearch: "Kevin Knox"},{valueToSearch: "Mikal Bridges"}, {valueToSearch: "Chandler Hutchison"}]

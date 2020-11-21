@@ -33,22 +33,22 @@ class NavBar extends Component {
     const db = firebase.firestore();
     let leaderData = [];
     let me = this;
-    db.collection("scores")
+    db.collection("snames")
       .orderBy("score", "desc")
       .limit(20)
       .get()
       .then(function (snapshot) {
         let rank = 1;
         snapshot.forEach(function (document) {
-          console.log(document.data())
+          //console.log(document.data())
           leaderData.push({
             rank: rank,
-            email: document.data().email,
+            name: document.data().name,
             score: document.data().score,
           });
           rank++;
         });
-        console.log(leaderData);
+        //console.log(leaderData);
         me.setState({
           leaderboard: leaderData,
         });
@@ -62,7 +62,7 @@ class NavBar extends Component {
     let me = this;
     firebase.auth().onAuthStateChanged(function (currentUser) {
       if (currentUser) {
-        firebase.firestore().collection("names").doc(currentUser.email)
+        firebase.firestore().collection("snames").doc(currentUser.email)
         .get()
         .then(function(doc){
           me.setState({
@@ -160,7 +160,7 @@ class NavBar extends Component {
                     {this.state.leaderboard.map((x, index) => (
                     <tr key={index}>
                       <td>{x.rank}</td>
-                      <td>{x.email.split("@")[0].toUpperCase()}</td>
+                      <td>{x.name}</td>
                       <td>{x.score}</td>
                     </tr>
                     ))}

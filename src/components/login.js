@@ -29,10 +29,12 @@ class Login extends Component {
       });
      // console.log(name.value)
     if (promise){
-      db.collection("names").doc(email.value)
+      console.log(db.collection("snames").doc(email.value));
+      db.collection("snames").doc(email.value)
       .set({
         email: email.value,
-        name: name.value
+        name: name.value,
+        score: 0
       })
       this.setState({
         email: email.value
@@ -78,8 +80,8 @@ class Login extends Component {
    updateName(){
     let name = document.getElementById("updateName").value
     
-    db.collection("names").doc(this.state.email).update({"name": name})
-    db.collection("names").doc(this.state.email).get().then(
+    db.collection("snames").doc(this.state.email).update({"name": name})
+    db.collection("snames").doc(this.state.email).get().then(
       function(doc) {
         console.log(doc.data().name);
       }
@@ -124,10 +126,7 @@ class Login extends Component {
               <input className="userInput" type="password" placeholder="password" id="password" />
               <br /><br/>
               <button className="button is-primary" onClick={this.signIn} id="signIn">Sign In</button>
-              {this.state.currentUser
-              ? <button style = {{width: 118, backgroundColor: '#C9082A', color: 'white'}} className="button" onClick={this.deleteUser} id="deleteUser">Delete Account</button>
-              : ""
-              }
+              
               <br/>
               <br/><hr/>
               {this.state.currentUser ?
@@ -138,6 +137,7 @@ class Login extends Component {
               <br />
               <br />
               <button className="button is-primary submit" onClick={this.updateName} id="Update">Update</button>
+              <button style = {{width: 118, backgroundColor: '#C9082A', color: 'white'}} className="button" onClick={this.deleteUser} id="deleteUser">Delete Account</button>
               </div>
               : 
               <div>

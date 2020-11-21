@@ -27,7 +27,8 @@ export default class renderPlayer extends Component {
       searchValue: "",
       showDropdown: false,
       list: players,
-      disableSkip: false
+      disableSkip: false,
+      email: null
     };
   }
 
@@ -107,19 +108,20 @@ export default class renderPlayer extends Component {
       this.setState({
         timeout: true,
       });
-
+      let score = this.state.score
       if (firebase.auth().currentUser) {
-        db.collection("scores")
-          .add({
-            email: firebase.auth().currentUser.email,
-            score: this.state.score,
-          })
-          .then(function () {
-     //       console.log("Document successfully written!");
-          })
-          .catch(function (error) {
-     //       console.error("Error writing document: ", error);
-          });
+        db.collection("snames").doc(firebase.auth().currentUser.email).get().then(
+          async function(doc) {
+            if(doc.data().score < score){
+              db.collection("snames").doc(firebase.auth().currentUser.email)
+              .update(({"score": score}))
+              .catch(function (error) {
+         //       console.error("Error writing document: ", error);
+              });
+            }
+         }
+        )
+        
       }
     }
   }
