@@ -126,35 +126,35 @@ button {
 /* fonts/text style */
 h1,
 .h1 {
-  font-family: "Tw Cen MT Condensed";
+  font-family: "Trebuchet MS";
   font-size: 64px;
 }
 h2,
 .h2 {
-  font-family: "Tw Cen MT Condensed";
+  font-family: "Trebuchet MS";
   font-size: 36px;
   text-align: left;
 }
 h3,
 .h3 {
-  font-family: "Tw Cen MT Condensed";
+  font-family: "Trebuchet MS";
   font-size: 45px;
   color: #a7a6a6;
 }
 .h4 {
-  font-family: "Tw Cen MT Condensed";
+  font-family: "Trebuchet MS";
   font-size: 72px;
   font-weight: 400;
   text-align: center;
 }
 .num {
-  font-family: "Tw Cen MT Condensed";
+  font-family: "Trebuchet MS";
   font-size: 144px;
   text-align: center;
   color: #c9082a;
 }
 .stat {
-  font-family: "Tw Cen MT Condensed";
+  font-family: "Trebuchet MS";
   font-size: 72px;
   text-align: center;
 }
