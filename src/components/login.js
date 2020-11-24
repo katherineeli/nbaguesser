@@ -27,9 +27,7 @@ class Login extends Component {
         errorMessage = e.code;
         alert(e.message);
       });
-     // console.log(name.value)
     if (promise){
-      console.log(db.collection("snames").doc(email.value));
       db.collection("snames").doc(email.value)
       .set({
         email: email.value,
@@ -83,7 +81,6 @@ class Login extends Component {
     db.collection("snames").doc(this.state.email).update({"name": name})
     db.collection("snames").doc(this.state.email).get().then(
       function(doc) {
-        console.log(doc.data().name);
       }
     );
     this.setState({ toGame: true});

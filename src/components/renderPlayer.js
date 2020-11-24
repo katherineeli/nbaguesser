@@ -91,7 +91,6 @@ export default class renderPlayer extends Component {
       player_stats: player_stats_json.data[0],
       player_info: player_info_json,
     });
-   console.log("The answer is " + this.state.player_info.first_name + " " + this.state.player_info.last_name + " dummy");
   
   }
 

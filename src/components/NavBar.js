@@ -40,7 +40,6 @@ class NavBar extends Component {
       .then(function (snapshot) {
         let rank = 1;
         snapshot.forEach(function (document) {
-          //console.log(document.data())
           leaderData.push({
             rank: rank,
             name: document.data().name,
@@ -48,7 +47,6 @@ class NavBar extends Component {
           });
           rank++;
         });
-        //console.log(leaderData);
         me.setState({
           leaderboard: leaderData,
         });
